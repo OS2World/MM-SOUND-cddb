@@ -1,0 +1,54 @@
+
+What it is?
+------------
+Simple: It is source code for CDDB module and aString library (wich is required
+to compile it). CDDB module was coded to be used within WarpCD-Copy program,
+unfortunatelly dobrawka has got problems with it, and never included into wcdda.
+The problem was that after I completed the code (it was working fine) but before
+he used it, cddb.org stopped supporting us, and freedb generated errors while
+using this module (I also suspect that there could be problem with compiler 
+change: I used Watcom and dobrawka is using VAC for wcdda). There is also
+subdirectory astring containing "astring" library (by Piotr Grzybowski 
+<merlin@asua.org.pl>) which mimics IString:: methods for C's char* type. 
+I haven't got time to translate comments nor docs, so this file is the only
+thing you have if you want to play with the code.
+
+Design and code notes:
+----------------------
+1. Separate TCP/IP code: this was to prevent program loading fail if one hasn't
+TCP/IP installed. There is separate cddb-tcp dll module (acddbtcp/ subdir)
+which is responsible for tcp/ip communication. Main module tryies to load it,
+and if this fails it assumes that tcp/ip is not present, and operates only
+locally.
+2. Use Atom Tables for storing cddb data: this was for simplicity, but generated 
+several drawbacks. Since WinAddAtom is a PM function, module requires PM to be
+present on target system (that wasn't a problem, since wcdda itself is a PM
+program and reuires it to run ;)). According to docs WinAddAtom has limitation
+of 16k of stored strings, but there is no fu***** resulting error when you reach 
+or go over this limit. This is whay there is table of atom tables, and this 
+weird code that tryies to add atom and if it fails (we dunno why, maybe we reach 
+that limit?), tryies to create new table and then again add it to the new one.
+3. Make it multithreaded: issue CddbCreateQuery command, and wait for WM_CDDB
+when it completes... Then you can use CddbQueryValue* functions to acces data.
+
+aString library:
+----------------
+There was a time we were heavily using IBM's open classes. Later we dumped this
+due to generated code size and speed, but we lacked functionality provided by
+IString class, so aString library was born. It is not complex, just usefull.
+Version provided with this code is one of many (I lost a track of them ;)). It
+is possible it has some bugs (and for sure it has some unoptimized algorithms
+- remeber it's simple!), but when CDDB module was written they (bugs) never 
+shown itself. If somene wants to work on this, we'll happily accept his/her 
+fixes/additons/improvements.
+
+
+License:
+---------
+ let's say it's under GPL 2 or any compatible. 
+
+Links, mails etc...:
+---------------------
+ me: Ihsahn <bart2@asua.org.pl>
+ aString library author: Piotr Grzybowski <merlin@asua.org.pl>
+ WarpCD-Copy home page: <http://www.asua.org.pl/projects/wcdda>

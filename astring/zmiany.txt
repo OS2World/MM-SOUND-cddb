@@ -1,0 +1,6 @@
+Zmiany wykonane przeze mnie:
+
+ - wszystkie typy int zamienione na LONG
+ - juz nigdzie nie jest zwracany NULL, mozna uzywac jako podfunkcji
+
+	Bartosz Tomasik (Bart/2) <Bart2@asua.org.pl>

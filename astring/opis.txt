@@ -1,0 +1,161 @@
+ Kilka funkcji ktore napisalem glownie dlatego ze byly mi potrzebne. Kiedy 
+nie uzywalem juz IStringow z Open Classy pojawila sie potrzeba metod tej 
+klasy tyle ze w c, napisalem je, nie sa ani trudne do napisania, ani specjalnie
+rewolucyjne, nawet nazwy sa wziete z OC, ale dzialaja i mi sie przydaly, moze
+Tobie tez sie kiedys przydadza..:-).
+
+A String:: Index Of.
+ int astrixof(char *str,char *source,int start_pos,int end_pos);
+Funkcja znajduje pierwsze wystapienie *source w *str i zwraca jego pozycje.
+Parametry:
+ *str      - lancuch z ktory sprawdzamy
+ *source   - lancuch ktorego wystapien szukamy
+ start_pos - pozycja od ktorej zaczyna sie szukanie
+ end_pos   - pozycja na ktorej konczy sie szukanie
+Przyklad dzialania:
+ astrixof("hej hej hej","hej",3,10)=4
+
+A String:: Sub String.
+ char* astrsbstr(char *str,int start_pos,int end_pos);
+Funkcja zwraca kawalek lancucha *str, od start_pos do end_pos.
+Parametry:
+ *str      - z tego bierzemy kawalek
+ start_pos - pozycja od ktorej zaczynamy
+ end_pos   - pozycja na ktorej konczymy 
+Przyklad dzialania:
+ astrsbstr("hej1hej2hej3hej4",4,8)="hej2"
+
+A String:: Index Of Any Of.
+ int astrixoao(char *str,char *source,int start_pos,int end_pos);
+Funkcja szuka jakiegokolwiek znaku z *source w *str, jesli zaden z *source
+nie wystepuje w *str zwraca -1, jesli ktorys wystepuje zwraca liczbe 
+wieksza lub rowna zero. Tak na dluzsza mete znaczenie ma tylko wiadomosc
+gatunku true/false (n/-1) bo i tak nie wiadomo o ktory znak z *source chodzi.
+Parametry:
+ *str      - w tym szukamy
+ start_pos - pozycja od ktorej zaczynamy
+ end_pos   - pozycja na ktorej konczymy 
+Przyklad dzialania:
+ astrixoao("45681452563","123",0,11)=4;
+
+A String:: Cut.
+ char* astrcut(char *str,int start_pos,int end_pos);
+Funkcja wycina kawalek str, poczawszy od start_poz, a na end_pos skonczywszy.
+Parametry:
+ *str      - z tego wycinamy
+ start_pos - pozycja od ktorej zaczynamy
+ end_pos   - pozycja na ktorej konczymy 
+Przyklad dzialania:
+ astrcut("hej hej",2,5)="heej";
+
+A String:: Index Of Word.
+ int astrixofwrd(char *str,int num_word);
+Funcja zwraca index (pozycje) slowa o numerze num_word w *str.
+Parametry:
+ *str      - w tym szukamy
+ num_word  - numer slowa
+Przyklad dzialania:
+ astrixofwrd("co to jest?",2)=3;
+
+A String:: Index Of Word 2.
+ int astrixofwrd2(char *str,char *word);
+Funkcja zwraca index (pozycje) slowa *word w *str.
+Parametry:
+ *str      - w tym szukamy
+ *word     - slowo ktorego pozycji szukamy
+Przyklad dzialania:
+ astrixofwrd2("co to jest?","to")=3;
+
+A String:: Length Of Word.
+ int astrlnofwrd(char *str,int num_word);
+Funkcja zwraca dlugosc slowa o numerze num_word z *str.
+Parametry:
+ *str      - w tym szukamy
+ num_word  - numer slowa
+Przyklad dzialania:
+ astrlnofwrd("co to jest?",2)=2;
+
+A String:: Word.
+ char* astrwrd(char *str,int num_word);
+Funkcja zwraca slowo o podanym numerze (num_word) z *str.
+Parametry:
+ *str      - w tym szukamy
+ num_word  - numer slowa
+Przyklad dzialania:
+ astrwrd("co to jest?",3)="jest?"
+
+A String:: Number Of Words.
+ int astrnumwrds(char *str);
+Funkcja zwraca ilosc slow w *str.
+Parametry:
+ *str      - w tym szukamy
+Przyklad dzialania:
+ astrnumwrds("hej hej ")=2
+
+A String:: Words.
+ char* astrwrds(char *str,int start_word,int end_word);
+Funkcja zwraca lancuch znakow skladajac sie z slow od slowa o numerze 
+start_word do slowa o numerze end_word.
+Parametry:
+ *str      - w tym szukamy
+ start_word- numer slowa, od ktorego zaczynamy
+ end_word  - numer slowa, na ktorym konczymy
+Przyklad dzialania:
+ astrwrds("slowo1 slowo2   slowo3 slowo4 ",2,4)="slowo2 slowo3 slowo4"
+
+A String:: Last Index Of.
+ int astrlsixof(char *str,char *source,int start_pos,int end_pos);
+Funkcja dziala odwrotnie niz astrixof, szuka od konca.
+Parametry:
+ *str      - lancuch w ktorym szukamy
+ *source   - lancuch ktorego wystapien szukamy
+ start_pos - pozycja od ktorej zaczyna sie szukanie
+ end_pos   - pozycja na ktorej konczy sie szukanie
+Przyklad dzialania:
+ astrlsixof("hej1 hej2 hej1 hej2","hej1",0,19)=10
+
+A String:: Last Index Of Any Of.
+ int astrlsixoao(char *str,char *source,int start_pos,int end_pos);
+Ta funkcja ma wybitnie dzalanie true/false (n/-1) zwraca liczbe wieksza lub 
+rowna zeru, gdy ktorys z *source wystepuje pomiedzy pozycja start_pos i 
+end_pos w *str, szuka od konca, jesli nie znajdzie zadnego z *source w *str
+zwraca -1.
+Parametry:
+ *str      - lancuch w ktorym szukamy
+ *source   - lancuch z ktorego znakow wystapien szukamy
+ start_pos - pozycja od ktorej zaczyna sie szukanie
+ end_pos   - pozycja na ktorej konczy sie szukanie
+Przyklad dzialania:
+ astrlsixoao("hej1 hej2 hej1 hej2","hej1",0,19)=5
+
+A String:: Contact.
+ char* astrcon(char *ch0,char *ch1);
+Nie wiem po co ja napisalem, chyba jest taka funkcja w rodzinie funkcji 
+bibliotecznych str*, ale napisalem ja chyba dlatego ze te z str* nie bardzo 
+chcialy mi dzialac. Funkcja laczy dwa lancuch znakow *ch0 i *ch1 i zwraca 
+to co z tego wyniklo.
+Parametry:
+ *ch0      - lancuch pierwszy
+ *ch1      - lancuch drugi
+Przyklad dzialania:
+ astrcon("hej",":-)")="hej:-)";
+
+A String:: Insert.
+ char* astrins(char *str,int poz,char *s);
+Funkcja umieszcza w *str na pozycji poz *s i zwraca lancuch przez takie 
+wstawienie otrzymany.
+Parametry:
+ *str      - lancuch do ktorego wpisujemy
+ poz       - pozycja na ktorej wpisujemy
+ *s        - lancuch ktory wpisujemy
+Przyklad dzialania:
+ astrins("hej",3,":-)")="hej:-)";
+
+A String:: Occurences.
+ int asrtocc(char *str,char *s);
+Zwraca ilosc wystapien *s w *str.
+Parametry:
+ *str      - lancuch w ktorym szukamy
+ *s        - lancuch ktorego wystapien szukamy
+Przyklad dzialania:
+ astrocc("To juz cyba koniec... nie ma to jak koniec...","koniec")=2

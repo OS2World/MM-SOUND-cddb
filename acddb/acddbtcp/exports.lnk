@@ -1,0 +1,4 @@
+EXPORT
+CddbSockInit.100=CddbSockInit,
+_CddbQueryRemote.101=_CddbQueryRemote
+
